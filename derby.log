@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sat Aug 12 16:56:36 CDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015d-d872-eceb-0000008c89e8 
+on database directory memory:C:\toolbox\Mobile_Bot\mobile-bot\testdb with class loader sun.misc.Launcher$AppClassLoader@1d16e93 
+Loaded from file:/C:/Users/a2burns/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_112-b15
+user.dir=C:\toolbox\Mobile_Bot\mobile-bot
+os.name=Windows 7
+os.arch=x86
+os.version=6.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
