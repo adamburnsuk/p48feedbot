@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Device Info</title>
+    <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div class="">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<img src="../templates/images/spark_small.png" th:src="@{/images/spark_small.png}"/>
+  <a class="navbar-brand" href="#">Mobile Device Tool</a>
+</nav>
+</div>
+
+<div class="container">
+	<h1>Device Info</h1>
+    <p th:text="'Id: ' + ${device.id}" />
+    <p th:text="'Name: ' + ${device.name}" />
+    <p th:text="'Status: ' + ${device.status}" />
+    <p th:text="'Image File Name: ' + ${device.imageFile}" />
+    <a class="btn btn-primary" href="/device" role="button">Add another device</a>
+</div>
+
+</body>
+</html>

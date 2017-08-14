@@ -1,4 +1,4 @@
-package com.walmart.qe.mobilebot.device;
+package com.walmart.qe.mobilebot.model;
 
 public class DevicePackage {
 

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Device</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+</head>
+<body>
+
+<div class="">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<img src="../templates/images/spark_small.png" th:src="@{/images/spark_small.png}"/>
+  <a class="navbar-brand" href="#">Mobile Device Tool</a>
+</nav>
+</div>
+
+<div class="container">
+<div>
+	<h2>Add Device to Lab</h2>
+	<div>
+    <form action="#" th:action="@{/device}" th:object="${device}" method="post">
+    <div class = "form-group row">
+    	<label for="formGroupID" class="col-sm-2 col-form-label">Id</label>
+    	<div class="col-sm-10">
+    	<input type="text" class="form-control" id="formGroupID" placeholder="Unique ID Here" th:field="*{id}" />
+    	</div>
+   	</div>
+	<div class = "form-group row">
+    	<label for="formGroupName" class="col-sm-2 col-form-label">Name</label>
+    	<div class="col-sm-10">
+        <input type="text" class="form-control" id="formGroupName" placeholder="Device Name" th:field="*{name}" />
+        </div>
+    </div>
+    
+    <div class = "form-group row">
+        <label for="formGroupStatus" class="col-sm-2 col-form-label">Status</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" id="formGroupStatus" placeholder="Device Status" th:field="*{status}" />
+        </div>
+    </div>
+    
+    <div class = "form-group row">
+        <label for="formGroupImageFile" class="col-sm-2 col-form-label">Image File Name</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" id="formGroupImageFile" placeholder="Image File Name" th:field="*{imageFile}" />
+        </div>
+    </div>
+    <div class = "form-group row">
+    	<div class="col-sm-2"></div>
+    	<div class="col-sm-1"><input type="submit" value="Submit" class="btn btn-primary"/></div>
+		<div class="col-sm-1"><input type="reset" value="Reset" class="btn btn-primary"/></div>
+		<div class="col-sm-1"> <a class="btn btn-primary" href="/list" role="button">View Devices</a></div>
+        
+    </div>
+    </form>
+    </div>
+</div>
+</div>
+</body>
+</html>

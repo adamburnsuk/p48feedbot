@@ -1,4 +1,4 @@
-package com.walmart.qe.mobilebot.device;
+package com.walmart.qe.mobilebot.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,6 +11,7 @@ public class Device {
 	    private String id;
 	    private String name;
 	    private String status;
+	    private String imageFile;
 	    
 	    
 	    //Default constructor
@@ -19,11 +20,22 @@ public class Device {
 	    }
 
 	    
-	    public Device(String id, String name, String status) {
+	    public Device(String id, String name, String status, String imageFile) {
 	        this.id = id;
 	        this.name = name;
 	        this.status = status;
+	        this.imageFile = imageFile;
 	    }
+
+		public String getImageFile() {
+			return imageFile;
+		}
+
+
+		public void setImageFile(String imageFile) {
+			this.imageFile = imageFile;
+		}
+
 
 		public String getId() {
 			return id;

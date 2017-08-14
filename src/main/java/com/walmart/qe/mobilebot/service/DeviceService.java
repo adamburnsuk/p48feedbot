@@ -1,10 +1,18 @@
-package com.walmart.qe.mobilebot.device;
+package com.walmart.qe.mobilebot.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.walmart.qe.mobilebot.data.DeviceRepository;
+import com.walmart.qe.mobilebot.model.Device;
+
+import se.vidstige.jadb.JadbConnection;
+import se.vidstige.jadb.JadbDevice;
+import se.vidstige.jadb.JadbException;
 
 @Service
 public class DeviceService {
@@ -49,5 +57,21 @@ public class DeviceService {
 
 		deviceRepository.delete(id);
 		
+	}
+	
+	//This method is used to capture a screen recording to the device
+	public void recordVideo(String deviceID) throws Exception {
+		JadbConnection jadb = new JadbConnection();
+    	List<JadbDevice> devices = jadb.getDevices();
+    	
+    	devices.get(0).executeShell("screenrecord", "/sdcard/screenshots/video_1.mp4 --timelimit 10");
+	}
+	
+	//Reboot android device by ID (This is the ID stored in the database)
+	public void rebootDevice(String id) throws IOException, JadbException {
+		JadbConnection jadb = new JadbConnection();
+    	List<JadbDevice> devices = jadb.getDevices();
+    	
+    	devices.get(0).executeShell("reboot", "");	  
 	}
 }
