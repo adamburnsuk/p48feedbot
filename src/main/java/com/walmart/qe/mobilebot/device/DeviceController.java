@@ -1,5 +1,6 @@
 package com.walmart.qe.mobilebot.device;
 
+import java.io.IOException;
 //Java utility libraries
 import java.util.List;
 
@@ -16,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import se.vidstige.jadb.JadbConnection;
+import se.vidstige.jadb.JadbDevice;
+import se.vidstige.jadb.JadbException;
 
 
 @RestController
@@ -47,6 +52,18 @@ public class DeviceController {
 	    @RequestMapping("/devices")
 	    public List<Device> getDevices(){
 	    	return deviceService.getAllDevices();
+	    }
+	    
+	    //A call to this service will immediately reboot the phone
+	    @RequestMapping("/device/reboot")
+	    public void rebootDevice() throws IOException, JadbException{
+	    	deviceService.rebootDevice("1");  	
+	    }
+	    
+	    //Record video on device
+	    @RequestMapping("/device/record")
+	    public void recordDevice() throws Exception{
+	    	deviceService.recordVideo("1");
 	    }
 
 }
