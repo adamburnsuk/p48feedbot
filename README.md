@@ -1,1 +1,1 @@
-# MobileBot
+# STE Lab Manager Software
