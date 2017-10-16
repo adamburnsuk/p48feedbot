@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mobile Bot - Mobile Test Lab Device Management</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+	<link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+	<link rel="stylesheet" href="../static/footer.css" th:href="@{/footer.css}"/>
+	
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container" th:fragment="packages">
+    <div th:if="${not #lists.isEmpty(packages)}">
+        <h2>Package List for <span th:text="${device.name}"></span></h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+            <tr th:each="package : ${packages}">
+                <td th:text="${package.name}"></td>
+                <td><a class="btn btn-primary" th:href="@{/devices/__${device.serial}__/packages/clear(packageName=${package.name})}" role="button">Clear Cache</a>
+                    <a class="btn btn-primary" th:href="@{/devices/__${device.serial}__/packages/uninstall(packageName=${package.name})}" role="button">Uninstall</a></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</body>
+</html>

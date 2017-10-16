@@ -255,6 +255,8 @@ textarea {
 
 table {
   border-collapse: collapse;
+  height:300px; 
+  display: -moz-groupbox;
 }
 
 caption {
@@ -597,6 +599,7 @@ pre code {
 }
 
 .container {
+  padding-top: 40px;
   margin-right: auto;
   margin-left: auto;
   padding-right: 15px;
@@ -4525,6 +4528,13 @@ button.list-group-item-light:focus,
 button.list-group-item-light:hover {
   color: #818182;
   background-color: #ececf6;
+}
+
+.btn-toolbar .btn{
+    margin-right: 5px;
+}
+.btn-toolbar .btn:last-child{
+    margin-right: 0;
 }
 
 a.list-group-item-light.active,

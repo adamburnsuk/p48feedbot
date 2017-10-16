@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<title>MobileBot Device Tool</title>
+<link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+<link rel="stylesheet" href="../static/footer.css" th:href="@{/footer.css}"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+<div class="jumbotron">
+	<div>
+		<h2>APK Uploader</h2>
+	</div>
+
+	<div>
+		<form method="POST" enctype="multipart/form-data" action="/files">
+			<table>
+				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+			</table>
+		</form>
+	</div>
+
+	<div>
+		<h4>APK List</h4>
+		<ul>
+			<li th:each="file : ${files}">
+				<a th:href="${file}" th:text="${file}"></a>
+			</li>
+		</ul>
+	</div>
+	
+	<div th:if="${message}">
+		<h2 th:text="${message}"></h2>
+	</div>
+	
+	<p><a class="btn btn-primary" href="/list" role="button">View Device List</a>
+	   <a class="btn btn-primary" href="/" role="button">Home</a></p>
+</div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

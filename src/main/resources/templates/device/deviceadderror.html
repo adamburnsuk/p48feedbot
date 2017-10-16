@@ -3,18 +3,20 @@
 <head lang="en">
 <title>MobileBot Device Tool</title>
 <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+<link rel="stylesheet" href="../static/footer.css" th:href="@{/footer.css}"/>
 </head>
 <body>
 
-<div class="">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"><img src="../templates/images/spark_small.png"/>Mobile Device Tool</a>
-</nav>
-</div>
-<div>
-Error adding device.
+<div th:replace="fragments/header :: header"></div>
 
-<a class="btn btn-primary" href="/device" role="button">Add Device</a>
+<div class="container">
+Error adding device.
 </div>
+
+<a class="btn btn-primary" href="/devices" role="button">Add Device</a>
+<a class="btn btn-primary" href="/" role="button">Home</a>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

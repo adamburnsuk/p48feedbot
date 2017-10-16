@@ -3,18 +3,30 @@
 <head lang="en">
 <title>MobileBot Device Tool</title>
 <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+<link rel="stylesheet" href="../static/footer.css" th:href="@{/footer.css}"/>
 </head>
 <body>
 
-<div class="">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div th:replace="fragments/header :: header"></div>
 
-  <a class="navbar-brand" href="#"><img src="./resources/images/spark_small.png" th:src="@{/images/spark_small.png}"/>  Mobile Device Tool</a>
 
-</nav>
-</div>
 <div class="container">
-	<a class="btn btn-primary" href="/list" role="button">View Device List</a>
+
+	<div class="jumbotron">
+        <h1>Device Management Tool</h1>
+        <p>The QE Enablement Device Management tool is used to remotely control and configure the devices in the QLab used for test
+           automation.  You will find a list of devices, along with various ways to view device information and interact with the 
+           devices themselves.  
+        </p>
+        <h3>Rest API</h3>
+        <p>
+           Anything that you can do through the UI can also be done through REST service calls as well. Click
+           on the button below to access a list of devices that are currently available.</p>
+        <p><a class="btn btn-primary" href="/devices/list" role="button">View Device List</a>
+           <a class="btn btn-primary" href="/files" role="button">Manage APK Files</a></p>
+    </div>
 </div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

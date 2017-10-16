@@ -4,27 +4,26 @@
     <title>Add Device</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+    <link rel="stylesheet" href="../static/footer.css" th:href="@{/footer.css}"/>
 </head>
 <body>
 
-<div class="">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-<img src="../templates/images/spark_small.png" th:src="@{/images/spark_small.png}"/>
-  <a class="navbar-brand" href="#">Mobile Device Tool</a>
-</nav>
-</div>
+<div th:replace="fragments/header :: header"></div>
 
 <div class="container">
 <div>
-	<h2>Add Device to Lab</h2>
-	<div>
-    <form action="#" th:action="@{/device}" th:object="${device}" method="post">
+	
+	<p><h2>Add Device to Lab</h2></p>
+	<p>
+    <form action="#" th:action="@{/devices}" th:object="${device}" method="post">
+    
     <div class = "form-group row">
-    	<label for="formGroupID" class="col-sm-2 col-form-label">Id</label>
+    	<label for="formGroupName" class="col-sm-2 col-form-label">Serial #</label>
     	<div class="col-sm-10">
-    	<input type="text" class="form-control" id="formGroupID" placeholder="Unique ID Here" th:field="*{id}" />
-    	</div>
-   	</div>
+        <input type="text" class="form-control" id="formGroupName" placeholder="Device Serial Number" th:field="*{serial}" />
+        </div>
+    </div>
+    
 	<div class = "form-group row">
     	<label for="formGroupName" class="col-sm-2 col-form-label">Name</label>
     	<div class="col-sm-10">
@@ -32,29 +31,73 @@
         </div>
     </div>
     
-    <div class = "form-group row">
-        <label for="formGroupStatus" class="col-sm-2 col-form-label">Status</label>
-        <div class="col-sm-10">
-        <input type="text" class="form-control" id="formGroupStatus" placeholder="Device Status" th:field="*{status}" />
+   	<div class = "form-group row">
+    	<label for="formGroupModel" class="col-sm-2 col-form-label">Model</label>
+    	<div class="col-sm-10">
+        <input type="text" class="form-control" id="formGroupModel" placeholder="Device Model" th:field="*{model}" />
         </div>
     </div>
     
     <div class = "form-group row">
-        <label for="formGroupImageFile" class="col-sm-2 col-form-label">Image File Name</label>
-        <div class="col-sm-10">
-        <input type="text" class="form-control" id="formGroupImageFile" placeholder="Image File Name" th:field="*{imageFile}" />
+    	<label for="formGroupOs" class="col-sm-2 col-form-label">OS</label>
+    	<div class="col-sm-10">
+        <input type="text" class="form-control" id="formGroupOs" placeholder="Device OS" th:field="*{os}" />
         </div>
     </div>
+ 
+ 	<div class = "form-group row">
+    	<label for="formGroupOsVersion" class="col-sm-2 col-form-label">OS Version</label>
+    	<div class="col-sm-10">
+        <input type="text" class="form-control" id="formGroupOsVersion" placeholder="OS Version" th:field="*{osVersion}" />
+        </div>
+    </div>
+ 
     <div class = "form-group row">
-    	<div class="col-sm-2"></div>
-    	<div class="col-sm-1"><input type="submit" value="Submit" class="btn btn-primary"/></div>
-		<div class="col-sm-1"><input type="reset" value="Reset" class="btn btn-primary"/></div>
-		<div class="col-sm-1"> <a class="btn btn-primary" href="/list" role="button">View Devices</a></div>
-        
+     <label for="formGroupImageFile" class="col-sm-2 col-form-label">Image File</label>
+        <div class="col-sm-10">
+        	<select class="form-control" id="formGroupImageFile" name="imageName" th:field="*{imageFile}">
+        		<option th:each="imagefile : ${imageFiles}"
+                		th:value="${imagefile}"
+                		th:text="${imagefile}"></option>
+   	 		</select>
+   	 	</div>
+    </div>
+    
+    <div class = "form-group row">
+        <label for="formGroupIP" class="col-sm-2 col-form-label">Appium IP</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" id="formGroupIP" placeholder="Appium IP" th:field="*{ip}" />
+        </div>
+    </div>
+    
+    <div class = "form-group row">
+        <label for="formGroupAppiumPort" class="col-sm-2 col-form-label">Appium Port</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" id="formGroupAppiumPort" placeholder="Appium Port" th:field="*{appiumPort}" />
+        </div>
+    </div>
+    
+    <div class = "form-group row">
+        <label for="formGroupChromedriverPort" class="col-sm-2 col-form-label">Appium Port</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" id="formGroupChromedriverPort" placeholder="Chromedriver Port" th:field="*{chromedriverPort}" />
+        </div>
+    </div>
+
+    <div class = "form-group row">
+    	<div class="col-sm-3"></div>
+    	<div class="btn-toolbar">
+    	<input type="submit" value="Submit" class="btn btn-primary"/>&nbsp;&nbsp;
+		<input type="reset" value="Reset" class="btn btn-primary"/>&nbsp;&nbsp;
+		<a class="btn btn-primary" href="/devices/list" role="button">View Devices</a>&nbsp;&nbsp;
+		<a class="btn btn-primary" href="/" role="button">Home</a>
+        </div>
     </div>
     </form>
-    </div>
+    </p>
 </div>
 </div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

@@ -3,25 +3,90 @@
 <head>
     <title>Device Info</title>
     <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+    <link rel="stylesheet" href="../static/footer.css" th:href="@{/footer.css}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
-<div class="">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-<img src="../templates/images/spark_small.png" th:src="@{/images/spark_small.png}"/>
-  <a class="navbar-brand" href="#">Mobile Device Tool</a>
-</nav>
-</div>
+<div th:replace="fragments/header :: header"></div>
 
 <div class="container">
-	<h1>Device Info</h1>
-    <p th:text="'Id: ' + ${device.id}" />
-    <p th:text="'Name: ' + ${device.name}" />
-    <p th:text="'Status: ' + ${device.status}" />
-    <p th:text="'Image File Name: ' + ${device.imageFile}" />
-    <a class="btn btn-primary" href="/device" role="button">Add another device</a>
+<div class = "col-auto col-sm-auto col-md-auto col-lg-auto">
+<p>
+<div class="row"><div class="col-auto col-sm-auto col-md-auto col-lg-auto"></div><div class="col-md-7"><h2 th:text="'Info for ' + ${device.name}"></h2></div></div>
+</p>
+<div class="row"><div class="col-auto col-sm-auto col-md-auto col-lg-auto"></div></div>
+<div class = "row">
+<div class = "col-auto col-sm-auto col-md-auto col-lg-auto"><img th:src="@{/images/devices/__${device.imageFile}__}" width="250" height="250"></img></div>
+<div class="col-md-4">	
+	<div class="row">
+		<label for="deviceSerial" class="col-auto col-sm-auto col-md-auto col-lg-auto"><b>Serial Number</b></label>
+    	<span th:text="${device.serial}" id="deviceSerial"></span>
+    </div>
+    <div class="row">
+    <label for="deviceName" class="col-auto col-sm-auto col-md-auto col-lg-auto"><b>Name</b></label>
+    <span th:text="${device.name}" id="deviceName"></span>
+    </div>
+    <div class="row">
+    <label for="deviceModel" class="col-auto col-sm-auto col-md-auto col-lg-auto"><b>Model</b></label>
+    <span th:text="${device.model} ? ${device.model} : 'null value!'" id="deviceModel"></span>
+    </div>
+    <div class="row">
+    <label for="deviceOs" class="col-auto col-sm-auto col-md-auto col-lg-auto"><b>OS</b></label>
+    <span th:text="${device.os} ? ${device.os} : 'null value!'" id="deviceOs"></span>
+    </div>
+    <div class="row">
+    <label for="deviceOsVersion" class="col-auto col-sm-auto col-md-auto col-lg-auto"><b>OS Version</b></label>
+    <span th:text="${device.osVersion} ? ${device.osVersion} : 'null value!'" id="deviceOsVersion"></span>
+    </div>
+    <div class="row">
+    	<label for="deviceStatus" class="col-auto col-sm-auto col-md-auto col-lg-auto"><b>Status</b></label>
+    	<span th:text="${device.status}" id="deviceStatus"></span>
+    </div>
+    <div class="row">
+    	<label for="deviceSerial" class="col-auto col-sm-auto col-md-auto col-lg-auto"><b>Serial #</b></label>
+    	<span th:text="${device.serial}" id="deviceSerial"></span>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+    	<b>Appium Status:</b>&nbsp;&nbsp;<span><div th:text="${appiumstatus}"></div></span>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+    	<b>Message:</b>&nbsp;&nbsp;<span th:if="${message}"><div th:text="${message}"></div></span>
+    </div>
+</div>
+</div>
+<div class="row">
+	<div class="col-md-3"><span>APK Name (including .apk):</span></div>
+	<div>
+		<form action="#" th:action="@{/devices/__${device.serial}__/packages/install}" th:object="${deviceFile}" method="post">
+    		<p><input type="text" th:field="*{name}" th:placeholder="${deviceFile.name}" />
+    		<input class="btn btn-primary" type="submit" value="Install Apk" /> <input class="btn btn-primary" type="reset" value="Reset" /></p>
+    	</form>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="btn-toolbar text-center well">
+		<a class="btn btn-primary" th:href="@{/devices/__${device.serial}__/edit}" role="button">Edit Device</a>&nbsp;&nbsp;
+		<a class="btn btn-primary" th:href="@{/devices/__${device.serial}__/reboot}" th:if="${device.status} == 'Ready'" role="button">Reboot</a>
+		<span th:if="${device.status} == 'Ready'">&nbsp;&nbsp;</span>
+		<a class="btn btn-primary" th:href="@{/devices/__${device.serial}__/startappium}" th:if="${device.status} == 'Ready'" role="button">Start Appium</a>&nbsp;&nbsp;
+		<a class="btn btn-primary" th:href="@{/devices/__${device.serial}__/stopappium}" th:if="${device.status} == 'Ready'" role="button">Stop Appium</a>&nbsp;&nbsp;
+		<a class="btn btn-primary" th:href="@{/devices/__${device.serial}__/reserve}" role="button">Reserve</a>&nbsp;&nbsp;
+		<a class="btn btn-primary" href="/devices/list" role="button">View Devices</a>&nbsp;&nbsp;
+		<a class="btn btn-primary" th:href="@{/devices/__${device.serial}__/delete}" role="button">Delete Device</a>&nbsp;&nbsp;
+		<a class="btn btn-primary" href="/" role="button">Home</a>
+	</div>
+</div>
+</div>
 </div>
 
+<p>
+<div th:replace="device/packages :: packages"></div>
+</p>
+
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
