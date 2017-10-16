@@ -1,3 +1,5 @@
 flows:
   default:
-    - echo "hello looper!"
+    - dir(build):
+    	- echo "Running Maven clean test"
+    	- mvn clean test
