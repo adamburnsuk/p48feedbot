@@ -1,4 +1,6 @@
+tools:
+  jdk: 8
+  maven: 3.5.0
 flows:
   default:
-      - echo "Running Maven clean test"
-      - mvn clean test
+    - mvn clean test
