@@ -3,4 +3,4 @@ tools:
   maven: 3.5.0
 flows:
   default:
-    - mvn clean test
+    - mvn test
