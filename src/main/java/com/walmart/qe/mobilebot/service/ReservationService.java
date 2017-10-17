@@ -6,10 +6,10 @@ import org.apache.http.client.ClientProtocolException;
 import org.springframework.stereotype.Service;
 
 import com.walmart.qe.mobilebot.model.Device;
-import com.walmart.qe.mobilebot.stelabapi.ActiveReservation;
-import com.walmart.qe.mobilebot.stelabapi.NoAvailableDeviceException;
-import com.walmart.qe.mobilebot.stelabapi.ReservationResponse;
-import com.walmart.qe.mobilebot.stelabapi.LabManager;
+import com.walmart.ste.stelabapi.ActiveReservation;
+import com.walmart.ste.stelabapi.NoAvailableDeviceException;
+import com.walmart.ste.stelabapi.ReservationResponse;
+import com.walmart.ste.stelabapi.LabManager;
 
 /**
  * This class contains all methods required to work with a device reservation

@@ -1,8 +1,6 @@
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.http.client.ClientProtocolException;
@@ -11,16 +9,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
-import com.walmart.qe.mobilebot.stelabapi.LabManager;
-import com.walmart.qe.mobilebot.stelabapi.LoginException;
-import com.walmart.qe.mobilebot.stelabapi.MetaTag;
-import com.walmart.qe.mobilebot.stelabapi.NoAvailableDeviceException;
-import com.walmart.qe.mobilebot.stelabapi.ReservationResponse;
-import com.walmart.qe.mobilebot.stelabapi.SessionInfo;
+import com.walmart.ste.stelabapi.LabManager;
+import com.walmart.ste.stelabapi.LoginException;
+import com.walmart.ste.stelabapi.NoAvailableDeviceException;
+import com.walmart.ste.stelabapi.ReservationResponse;
+import com.walmart.ste.stelabapi.SessionInfo;
 
 
 public class AndroidCalcAppTest {

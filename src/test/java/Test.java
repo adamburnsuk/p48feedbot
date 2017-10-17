@@ -4,11 +4,11 @@ import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
 
-import com.walmart.qe.mobilebot.stelabapi.LabManager;
-import com.walmart.qe.mobilebot.stelabapi.LoginException;
-import com.walmart.qe.mobilebot.stelabapi.NoAvailableDeviceException;
-import com.walmart.qe.mobilebot.stelabapi.ReservationResponse;
-import com.walmart.qe.mobilebot.stelabapi.SessionInfo;
+import com.walmart.ste.stelabapi.LabManager;
+import com.walmart.ste.stelabapi.LoginException;
+import com.walmart.ste.stelabapi.NoAvailableDeviceException;
+import com.walmart.ste.stelabapi.ReservationResponse;
+import com.walmart.ste.stelabapi.SessionInfo;
 
 public class Test {
 

@@ -18,9 +18,7 @@ import com.walmart.qe.mobilebot.data.DeviceRepository;
 import com.walmart.qe.mobilebot.exceptions.AppiumNotStoppedException;
 import com.walmart.qe.mobilebot.model.Device;
 import com.walmart.qe.mobilebot.model.DevicePackage;
-import com.walmart.qe.mobilebot.stelabapi.ActiveReservation;
-import com.walmart.qe.mobilebot.stelabapi.LabManager;
-import com.walmart.qe.mobilebot.stelabapi.NoAvailableDeviceException;
+import com.walmart.ste.stelabapi.*;
 import com.walmart.qe.mobilebot.util.AppiumServerJava;
 
 import se.vidstige.jadb.JadbConnection;
@@ -427,7 +425,7 @@ public class DeviceService {
 		ap.startServer(device.getIp(), device.getAppiumPort(), device.getSerial(), device.getChromedriverPort());
 		
 		//Check to make sure success in starting appium
-		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(),20000)){
+		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(),30000)){
 			return true;
 		}else{
 			return false;
@@ -443,7 +441,7 @@ public class DeviceService {
 		ap.startServer(device.getIp(), device.getAppiumPort(), device.getSerial(), device.getChromedriverPort(), reservation.getReservationId().toString());
 		
 		//Check to make sure success in starting appium
-		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(),20000)){
+		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(),30000)){
 			return true;
 		}else{
 			return false;
@@ -456,11 +454,11 @@ public class DeviceService {
 		AppiumServerJava ap = new AppiumServerJava();
 		Device device = deviceRepository.findOne(id);
 		
-		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(), 2000)){
+		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(), 8000)){
 			ap.stopServer(device.getAppiumPort());
 		}
 		
-		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(), 2000)){
+		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(), 8000)){
 			throw new AppiumNotStoppedException("Appium could not be stopped for device.");
 		}
 		
@@ -471,11 +469,11 @@ public class DeviceService {
 		AppiumServerJava ap = new AppiumServerJava();
 		Device device = deviceRepository.findOne(reservation.getDeviceManufacturer());
 		
-		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(), 2000)){
+		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(), 8000)){
 			ap.stopServer(device.getAppiumPort());
 		}
 		
-		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(), 2000)){
+		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(), 8000)){
 			throw new AppiumNotStoppedException("Appium could not be stopped for device.");
 		}
 		

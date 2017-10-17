@@ -1,49 +1,59 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.walmart</groupId>
-  <artifactId>mobile-bot</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Mobile Bot</name>
-  <description>This api allows for monitoring and controlling of android devices via http.</description>
-  
-  <packaging>jar</packaging>
-  
-  <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.5.RELEASE</version>
-   </parent>
-  
-  <repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-  </repositories>
-  
-  <dependencies>
-  
-  	<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.walmart</groupId>
+	<artifactId>mobile-bot</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Mobile Bot</name>
+	<description>This api allows for monitoring and controlling of android devices via http.</description>
+
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.5.RELEASE</version>
+	</parent>
+
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+
+	<properties>
+		<jacoco.version>0.7.9</jacoco.version>
+		<sonar-jacoco-listeners.version>3.2</sonar-jacoco-listeners.version>
+		<sonar.language>java</sonar.language>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
+		<sonar.jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</sonar.jacoco.itReportPath>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-	</dependency>
-	    <dependency>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-	</dependency>
-	    <dependency>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-	</dependency>
-  	<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-    <dependency>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
 			<scope>runtime</scope>
@@ -54,36 +64,36 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-    		<groupId>com.github.vidstige</groupId>
-    		<artifactId>jadb</artifactId>
-    		<version>v1.0.1</version>
+			<groupId>com.github.vidstige</groupId>
+			<artifactId>jadb</artifactId>
+			<version>v1.0.1</version>
 		</dependency>
-    	<dependency>
-        	<groupId>io.springfox</groupId>
-        	<artifactId>springfox-swagger2</artifactId>
-        	<version>2.7.0</version>
-    	</dependency>
-    	<dependency>
-        	<groupId>io.springfox</groupId>
-        	<artifactId>springfox-data-rest</artifactId>
-        	<version>2.7.0</version>
-    	</dependency>
-    	<dependency>
-        	<groupId>io.springfox</groupId>
-        	<artifactId>springfox-swagger-ui</artifactId>
-        	<version>2.7.0</version>
-    	</dependency>
-    	<dependency>
-  			<groupId>org.seleniumhq.selenium</groupId>
-  			<artifactId>selenium-server-standalone</artifactId>
-  			<version>2.44.0</version>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.7.0</version>
 		</dependency>
-				<dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-data-rest</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server-standalone</artifactId>
+			<version>2.44.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
 			<version>2.6.14</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.2</version>
@@ -101,22 +111,27 @@
 			<version>2.2</version>
 		</dependency>
 		<dependency>
-  			<groupId>org.apache.httpcomponents</groupId>
-  			<artifactId>httpclient</artifactId>
-  			<version>4.5.1</version>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.1</version>
 		</dependency>
-  </dependencies>
-  
-  <build>
+		<dependency>
+  			<groupId>com.walmart</groupId>
+  			<artifactId>stelabapi</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<build>
 		<plugins>
-		 	<plugin>
-        		<groupId>org.apache.maven.plugins</groupId>
-        		<artifactId>maven-compiler-plugin</artifactId>
-        		<configuration>
-          		<source>1.8</source>
-          		<target>1.8</target>
-        		</configuration>
-      		</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -125,13 +140,189 @@
 					<target>1.8</target>
 				</configuration>
 				<executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<configuration>
+					<propertyName>coverageAgent</propertyName>
+					<append>true</append>
+				</configuration>
+				<executions>
+					<execution>
+						<id>pre-unit-test</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+							<propertyName>surefireArgLine</propertyName>
+							<append>true</append>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+							<outputDirectory>${project.basedir}/../target/coverageReport</outputDirectory>
+							<append>true</append>
+						</configuration>
+					</execution>
+					<execution>
+						<id>pre-integration-test</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
+							<propertyName>failsafeArgLine</propertyName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<append>true</append>
+							<dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+							<outputDirectory>${project.basedir}/../target/coverageReport</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>${skipTests}</skip>
+					<argLine>${surefireArgLine}</argLine>
+					<includes>
+						<include>**/*TestNG*</include>
+					</includes>
+					<excludes>
+						<exclude>**/FT/**</exclude>
+						<exclude>**/*IT*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.20</version>
+				<configuration>
+					<skip>${skipTests}</skip>
+					<argLine>${failsafeArgLine}</argLine>
+					<includes>
+						<include>**/*IT*</include>
+					</includes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+    <profile>
+        <id>jacoco-integ-tests</id>
+        <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.20</version>
+                <configuration>
+                    <skip>${skipTests}</skip>
+                    <argLine>${failsafeArgLine}</argLine>
+                    <includes>
+                        <include>**/*IT*</include>
+                    </includes>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>org.sonar.java.jacoco.TestNGListener</value>
+                        </property>
+                    </properties>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-tests</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+		                    <argLine>${failsafeArgLine}</argLine>
+		                    <properties>
+		                        <property>
+		                            <name>listener</name>
+		                            <value>org.sonar.java.jacoco.TestNGListener</value>
+		                        </property>
+		                    </properties>
+		                    <skipTests>false</skipTests>
+		                </configuration>
+		            </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        </build>
+        <dependencies>
+            <dependency>
+                <groupId>org.codehaus.sonar-plugins.java</groupId>
+                <artifactId>sonar-jacoco-listeners</artifactId>
+                <version>${sonar-jacoco-listeners.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </profile>
+    <profile>
+      <id>jacoco-unit-tests</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.20</version>
+            <configuration>
+              <argLine>${surefireArgLine}</argLine>
+              <skip>${skipTests}</skip>
+              <properties>
+                <property>
+                  <name>listener</name>
+                  <value>org.sonar.java.jacoco.TestNGListener</value>
+                </property>
+              </properties>
+              <includes>
+                <include>**/*TestNG*</include>
+              </includes>
+              <excludes>
+                <exclude>**/FT/**</exclude>
+                <exclude>**/*IT*</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
+        <dependency>
+          <groupId>org.codehaus.sonar-plugins.java</groupId>
+          <artifactId>sonar-jacoco-listeners</artifactId>
+          <version>${sonar-jacoco-listeners.version}</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 </project>

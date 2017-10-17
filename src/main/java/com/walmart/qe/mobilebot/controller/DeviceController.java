@@ -20,9 +20,9 @@ import com.walmart.qe.mobilebot.exceptions.AppiumNotStoppedException;
 import com.walmart.qe.mobilebot.model.Device;
 import com.walmart.qe.mobilebot.service.DeviceService;
 import com.walmart.qe.mobilebot.service.ReservationService;
-import com.walmart.qe.mobilebot.stelabapi.ActiveReservation;
-import com.walmart.qe.mobilebot.stelabapi.LabManager;
-import com.walmart.qe.mobilebot.stelabapi.NoAvailableDeviceException;
+import com.walmart.ste.stelabapi.ActiveReservation;
+import com.walmart.ste.stelabapi.LabManager;
+import com.walmart.ste.stelabapi.NoAvailableDeviceException;
 
 import se.vidstige.jadb.JadbException;
 

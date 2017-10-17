@@ -23,8 +23,8 @@ import com.walmart.qe.mobilebot.model.DeviceFile;
 import com.walmart.qe.mobilebot.service.DeviceService;
 import com.walmart.qe.mobilebot.service.ReservationService;
 import com.walmart.qe.mobilebot.service.StorageService;
-import com.walmart.qe.mobilebot.stelabapi.ActiveReservation;
-import com.walmart.qe.mobilebot.stelabapi.LabManager;
+import com.walmart.ste.stelabapi.ActiveReservation;
+import com.walmart.ste.stelabapi.LabManager;
 
 @Controller
 public class ViewController {

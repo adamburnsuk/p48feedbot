@@ -2,8 +2,6 @@
 import java.net.MalformedURLException;
 
 import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.walmart.qe.mobilebot.exceptions.AppiumNotStoppedException;
 import com.walmart.qe.mobilebot.util.AppiumServerJava;
 
