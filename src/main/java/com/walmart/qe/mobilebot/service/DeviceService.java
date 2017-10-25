@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.walmart.qe.mobilebot.data.DeviceRepository;
 import com.walmart.qe.mobilebot.exceptions.AppiumNotStoppedException;
+import com.walmart.qe.mobilebot.exceptions.ProcessNotKilledException;
 import com.walmart.qe.mobilebot.model.Device;
 import com.walmart.qe.mobilebot.model.DevicePackage;
 import com.walmart.ste.stelabapi.*;
@@ -417,10 +418,15 @@ public class DeviceService {
 		
 	}
 
-	public boolean startAppium(String id) throws MalformedURLException {
+	public boolean startAppium(String id) throws MalformedURLException, AppiumNotStoppedException {
 		
 		AppiumServerJava ap = new AppiumServerJava();
 		Device device = deviceRepository.findOne(id);
+		
+		//Check if server is already running.  If it is, stop it and start a fresh server instance
+		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(),5000)){
+			ap.stopServer(device.getAppiumPort());
+		}
 		
 		ap.startServer(device.getIp(), device.getAppiumPort(), device.getSerial(), device.getChromedriverPort());
 		
@@ -433,11 +439,20 @@ public class DeviceService {
 		
 	}
 	
-	public boolean startAppium(ActiveReservation reservation) throws ClientProtocolException, IOException, NoAvailableDeviceException {
+	public boolean startAppium(ActiveReservation reservation) throws ClientProtocolException, IOException, NoAvailableDeviceException, AppiumNotStoppedException, ProcessNotKilledException {
 		
 		AppiumServerJava ap = new AppiumServerJava();
 		Device device = deviceRepository.findOne(reservation.getDeviceManufacturer());
 		
+		//Attempt to stop chromedriver.exe for the chromedriver port.  Sometimes chromedriver keeps running even after appium is stopped
+		ap.killProcess(device.getChromedriverPort());
+		
+		//Check if server is already running.  If it is, stop it and start a fresh server instance
+		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(),5000)){
+			ap.stopServer(device.getAppiumPort());
+		}
+		
+		//Start server with given ip/port/deviceUDID/chromedriverport/reservationID (needed to confirm you have an active reservation)
 		ap.startServer(device.getIp(), device.getAppiumPort(), device.getSerial(), device.getChromedriverPort(), reservation.getReservationId().toString());
 		
 		//Check to make sure success in starting appium
@@ -446,13 +461,15 @@ public class DeviceService {
 		}else{
 			return false;
 		}
-		
 	}
 	
-	public void stopAppium(String id) throws MalformedURLException, AppiumNotStoppedException {
+	public void stopAppium(String id) throws ProcessNotKilledException, MalformedURLException, AppiumNotStoppedException {
 		
 		AppiumServerJava ap = new AppiumServerJava();
 		Device device = deviceRepository.findOne(id);
+		
+		//Attempt to stop chromedriver.exe for the chromedriver port.  Sometimes chromedriver keeps running even after appium is stopped
+		ap.killProcess(device.getChromedriverPort());
 		
 		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(), 8000)){
 			ap.stopServer(device.getAppiumPort());
@@ -464,10 +481,13 @@ public class DeviceService {
 		
 	}
 	
-	public void stopAppium(ActiveReservation reservation) throws MalformedURLException, AppiumNotStoppedException {
+	public void stopAppium(ActiveReservation reservation) throws ProcessNotKilledException, MalformedURLException, AppiumNotStoppedException {
 		
 		AppiumServerJava ap = new AppiumServerJava();
 		Device device = deviceRepository.findOne(reservation.getDeviceManufacturer());
+		
+		//Attempt to stop chromedriver.exe for the chromedriver port.  Sometimes chromedriver keeps running even after appium is stopped
+		ap.killProcess(device.getChromedriverPort());
 		
 		if(ap.checkAppiumRunning(device.getIp(), device.getAppiumPort(), 8000)){
 			ap.stopServer(device.getAppiumPort());

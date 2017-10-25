@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.net.UrlChecker;
 
 import com.walmart.qe.mobilebot.exceptions.AppiumNotStoppedException;
+import com.walmart.qe.mobilebot.exceptions.ProcessNotKilledException;
 
 public class AppiumServerJava {
 	
@@ -76,6 +77,26 @@ public class AppiumServerJava {
 		
 		
 		return p;
+	}
+	
+	/**
+	 * 
+	 * @param port port for the process you want to stop
+	 * @throws Exception 
+	 */
+	public void killProcess(String port) throws ProcessNotKilledException {
+		
+		try {
+			
+			String childPID = findPIDForPort(port);
+		
+			ProcessBuilder child = new ProcessBuilder("taskkill", "/pid", childPID, "/f");
+			
+			child.start();
+			
+		} catch (Exception e) {
+			throw new ProcessNotKilledException("Could not stop chromedriver for port: " + port + ".");
+		}
 	}
 	
 	/**

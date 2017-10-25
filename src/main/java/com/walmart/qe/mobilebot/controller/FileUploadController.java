@@ -21,6 +21,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.walmart.qe.mobilebot.exceptions.StorageFileNotFoundException;
 import com.walmart.qe.mobilebot.service.StorageService;
 
+/**
+ * This class is a controller for working with files in the application.
+ * 
+ * @author a2burns
+ *
+ */
 @Controller
 public class FileUploadController {
 
@@ -30,6 +36,13 @@ public class FileUploadController {
         this.storageService = storageService;
     }
 
+    /**
+     * Controller for upload form.  Loads route for upload form and passes model.
+     * 
+     * @param model the model object for upload form
+     * @return
+     * @throws IOException
+     */
     @GetMapping(value="/files")
     public String listUploadedFiles(Model model) throws IOException {
 
@@ -41,6 +54,11 @@ public class FileUploadController {
         return "files/uploadForm";
     }
 
+    /**
+     * 
+     * @param filename
+     * @return
+     */
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
@@ -69,6 +87,12 @@ public class FileUploadController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * Handles exceptions thrown by controller
+     * 
+     * @param exc StorageFileNotFoundException object
+     * @return
+     */
     @ExceptionHandler(StorageFileNotFoundException.class)
     public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
         return ResponseEntity.notFound().build();

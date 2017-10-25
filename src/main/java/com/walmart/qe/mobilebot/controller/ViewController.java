@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import se.vidstige.jadb.JadbException;
 
 import com.walmart.qe.mobilebot.exceptions.AppiumNotStoppedException;
+import com.walmart.qe.mobilebot.exceptions.ProcessNotKilledException;
 import com.walmart.qe.mobilebot.model.Device;
 import com.walmart.qe.mobilebot.model.DeviceFile;
 import com.walmart.qe.mobilebot.service.DeviceService;
@@ -227,7 +228,7 @@ public class ViewController {
 	}
 	
 	@GetMapping(value="/devices/{id}/startappium")
-	public ModelAndView startAppiumForDevice(@PathVariable String id, Model model) throws IOException, JadbException{
+	public ModelAndView startAppiumForDevice(@PathVariable String id, Model model) throws IOException, JadbException, AppiumNotStoppedException{
 		
 		Device device = deviceService.getDevice(id);
 		String appiumstatus = deviceService.isAppiumRunning(id);
@@ -250,7 +251,7 @@ public class ViewController {
 	}
 	
 	@GetMapping(value="/devices/{id}/stopappium")
-	public ModelAndView stopAppiumForDevice(@PathVariable String id, Model model) throws IOException, JadbException, AppiumNotStoppedException {
+	public ModelAndView stopAppiumForDevice(@PathVariable String id, Model model) throws IOException, JadbException, AppiumNotStoppedException, ProcessNotKilledException {
 		
 		Device device = deviceService.getDevice(id);
 		String appiumstatus = deviceService.isAppiumRunning(id);

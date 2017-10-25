@@ -1,0 +1,9 @@
+
+com.walmart.qe.mobilebot
+com.walmart.qe.mobilebot.controller
+com.walmart.qe.mobilebot.data
+com.walmart.qe.mobilebot.exceptions
+com.walmart.qe.mobilebot.model
+com.walmart.qe.mobilebot.properties
+com.walmart.qe.mobilebot.service
+com.walmart.qe.mobilebot.util
