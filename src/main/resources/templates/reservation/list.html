@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mobile Bot - Mobile Test Lab Device Management</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+	<link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+	<link rel="stylesheet" href="../static/footer.css" th:href="@{/footer.css}"/>
+	
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+    <div th:if="${not #lists.isEmpty(reservations)}">
+        <p><h2>Reservation List</h2></p>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Device Serial</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>IP</th>
+                <th>User ID</th>
+                <th></th>
+            </tr>
+            <tr th:each="reservation : ${reservations}">
+                <td th:text="${reservation.id}"></td>
+                <td th:text="${reservation.deviceSerial}"></td>
+                <td th:text="${reservation.startTime}"></td>
+                <td th:text="${reservation.endTime}"></td>
+                <td th:text="${reservation.ip}"></td>
+                <td th:text="${reservation.userId}"></td>
+                <td><a th:text="${reservation.id} + .log" th:href="@{/files/logs/} + ${reservation.id} + .log"></a></td>
+            </tr>
+        </table>
+    </div>
+    
+    <a class="btn btn-primary" href="/" role="button">Home</a>
+    
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

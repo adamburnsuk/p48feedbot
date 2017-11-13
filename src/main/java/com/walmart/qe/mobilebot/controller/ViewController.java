@@ -1,6 +1,7 @@
 package com.walmart.qe.mobilebot.controller;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -17,10 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import se.vidstige.jadb.JadbException;
 
+import com.walmart.qe.mobilebot.data.ReservationRepository;
 import com.walmart.qe.mobilebot.exceptions.AppiumNotStoppedException;
 import com.walmart.qe.mobilebot.exceptions.ProcessNotKilledException;
 import com.walmart.qe.mobilebot.model.Device;
 import com.walmart.qe.mobilebot.model.DeviceFile;
+import com.walmart.qe.mobilebot.model.Reservation;
 import com.walmart.qe.mobilebot.service.DeviceService;
 import com.walmart.qe.mobilebot.service.ReservationService;
 import com.walmart.qe.mobilebot.service.StorageService;
@@ -35,6 +38,9 @@ public class ViewController {
 	
 	@Autowired
 	private StorageService storageService;
+	
+	@Autowired
+	private ReservationRepository resRepository;
 	
 	@RequestMapping("/")
 	public String index(Model model){
@@ -283,6 +289,21 @@ public class ViewController {
 		model.addAttribute("devices", deviceList);
 		
 		return "device/list";
+		
+	}
+	
+	@RequestMapping("/reservations/list")
+	public String reslist(Model model) throws IOException, JadbException{
+
+		List<Reservation> resList = resRepository.findAll();
+		
+		Comparator<Reservation> reservationComparator = (o1, o2)->o1.getId().compareTo(o2.getId());
+		
+		resList.sort(reservationComparator.reversed());
+		
+		model.addAttribute("reservations", resList);
+		
+		return "reservation/list";
 		
 	}
 	

@@ -5,4 +5,4 @@ set udid=%3
 set chromedriverport=%4
 set reservationID=%5
 
-appium -a %ip% -p %port% --chromedriver-executable "c:\\toolbox\\chromedriver\\chromedriver.exe" --chromedriver-port %chromedriverport% -dc "{\"udid\": \"%udid%\"}" --log "c:\\toolbox\\tests\\logs\\%reservationID%.log" 
+appium -a %ip% -p %port% --chromedriver-executable "c:\\toolbox\\chromedriver\\chromedriver.exe" --chromedriver-port %chromedriverport% -dc "{\"udid\": \"%udid%\"}" --log "c:\\toolbox\\Mobile_Bot\\files\\logs\\%reservationID%.log" 

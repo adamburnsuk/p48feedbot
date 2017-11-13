@@ -15,12 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.walmart.qe.mobilebot.data.DeviceRepository;
+import com.walmart.qe.mobilebot.data.ReservationRepository;
 import com.walmart.qe.mobilebot.exceptions.AppiumNotStoppedException;
 import com.walmart.qe.mobilebot.exceptions.ProcessNotKilledException;
 import com.walmart.qe.mobilebot.model.Device;
 import com.walmart.qe.mobilebot.model.DevicePackage;
-import com.walmart.ste.stelabapi.*;
+import com.walmart.qe.mobilebot.model.Reservation;
 import com.walmart.qe.mobilebot.util.AppiumServerJava;
+import com.walmart.ste.stelabapi.ActiveReservation;
+import com.walmart.ste.stelabapi.LabManager;
+import com.walmart.ste.stelabapi.NoAvailableDeviceException;
 
 import se.vidstige.jadb.JadbConnection;
 import se.vidstige.jadb.JadbDevice;
@@ -42,6 +46,9 @@ public class DeviceService {
 	
 	@Autowired
 	private DeviceRepository deviceRepository;
+	
+	@Autowired
+	private ReservationRepository resRepository;
 	
 	LabManager labmanager = new LabManager();
 	
@@ -443,6 +450,19 @@ public class DeviceService {
 		
 		AppiumServerJava ap = new AppiumServerJava();
 		Device device = deviceRepository.findOne(reservation.getDeviceManufacturer());
+		Reservation res = new Reservation();
+		
+		//Add all reservation info to res
+		res.setId(reservation.getReservationId().toString());
+		res.setDeviceId(reservation.getDeviceId().toString());
+		res.setDeviceSerial(reservation.getDeviceManufacturer());
+		res.setStartTime(reservation.getStartTime());
+		res.setEndTime(reservation.getEndTime());
+		res.setIp(reservation.getIp());
+		res.setUserId(reservation.getUserId());
+		
+		//Save the reservation info in database
+		resRepository.save(res);
 		
 		//Attempt to stop chromedriver.exe for the chromedriver port.  Sometimes chromedriver keeps running even after appium is stopped
 		ap.killProcess(device.getChromedriverPort());

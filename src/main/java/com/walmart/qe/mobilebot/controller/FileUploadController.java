@@ -67,6 +67,20 @@ public class FileUploadController {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+    
+    /**
+     * 
+     * @param filename
+     * @return
+     */
+    @GetMapping("/files/logs/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> serveLogFile(@PathVariable String filename) {
+
+        Resource file = storageService.loadAsResource("logs/" + filename);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    }
 
     @PostMapping("/files")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,

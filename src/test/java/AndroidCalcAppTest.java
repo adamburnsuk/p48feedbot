@@ -30,7 +30,7 @@ public class AndroidCalcAppTest {
 		
 //		try {
 //			try {
-//				myInfo = labManager.Login("admin", "admin");
+			myInfo = labManager.Login("admin", "admin");
 //			} catch (LoginException e) {
 //
 //				e.printStackTrace();
@@ -42,7 +42,7 @@ public class AndroidCalcAppTest {
 //		System.out.println(myInfo.getUserId());
 //		
 //		try {
-//			resResponse = labManager.createReservationByDeviceType("NOTE5", 30);	
+			resResponse = labManager.createReservationByDeviceType("NOTE5", 30);	
 //			
 //			System.out.println(labManager);
 //			
@@ -52,7 +52,7 @@ public class AndroidCalcAppTest {
 //		}
 //
 //		try {
-//			labManager.startAppiumForDevice(resResponse.getActiveReservation());
+			labManager.startAppiumForDevice(resResponse.getActiveReservation());
 //		} catch (IOException | NoAvailableDeviceException e) {
 //
 //			e.printStackTrace();
@@ -75,8 +75,8 @@ public class AndroidCalcAppTest {
 		capabilities.setCapability("appActivity", "com.android.calculator2.CalculatorGoogle");
 		
 		//Mac Mini Appium Connection with Egg Cloud
-		//driver = new RemoteWebDriver(new URL("http://" + resResponse.getActiveReservation().getIp() + ":" + resResponse.getActiveReservation().getPort() + "/wd/hub"), capabilities);
-		driver = new RemoteWebDriver(new URL("http://172.21.17.142:4723/wd/hub"), capabilities);
+		driver = new RemoteWebDriver(new URL("http://" + resResponse.getActiveReservation().getIp() + ":" + resResponse.getActiveReservation().getPort() + "/wd/hub"), capabilities);
+		//driver = new RemoteWebDriver(new URL("http://172.21.17.142:4723/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		
 	}
