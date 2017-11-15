@@ -307,6 +307,13 @@ public class ViewController {
 		
 	}
 	
+	@RequestMapping("/reservations/paglist")
+	public String reslistPaginated(Model model) throws IOException, JadbException{
+		
+		return "reservation/paginatedlist";
+		
+	}
+	
 	@GetMapping(value="/devices/{id}/packages")
 	public String getDevicePackages(@PathVariable String id, Model model) throws IOException, JadbException{
 		model.addAttribute("device", deviceService.getDevice(id));
